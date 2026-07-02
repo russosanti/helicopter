@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Coin : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-
-	}
+public class Coin : MonoBehaviour
+{
+	protected virtual int Value => 1;
 
 	// Update is called once per frame
 	void Update () {
-
 		// despawn coin if it goes past the left edge of the screen
 		if (transform.position.x < -25) {
 			Destroy(gameObject);
 		}
 		else {
-
 			// ensure coin moves at the same rate as the skyscrapers do
 			transform.Translate(-SkyscraperSpawner.speed * Time.deltaTime, 0, 0, Space.World);
 		}
@@ -26,9 +21,8 @@ public class Coin : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-
 		// trigger coin pickup function if a helicopter collides with this
-		other.transform.parent.GetComponent<HeliController>().PickupCoin();
+		other.transform.parent.GetComponent<HeliController>().PickupCoin(Value);
 		Destroy(gameObject);
 	}
 }
