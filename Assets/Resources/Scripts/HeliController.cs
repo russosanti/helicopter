@@ -53,8 +53,8 @@ public class HeliController : MonoBehaviour {
 		rb.linearVelocity = new Vector3(horizontal, vertical, 0);
 	}
 
-	public void PickupCoin() {
-		coinTotal += 1;
+	public void PickupCoin(int points = 1) {
+		coinTotal += points;
 
 		// trigger audio playback and emit particles from particle system
 		GetComponents<AudioSource>()[0].Play();
